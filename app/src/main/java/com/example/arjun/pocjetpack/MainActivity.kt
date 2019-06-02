@@ -4,6 +4,7 @@ import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_main.*
 import com.example.arjun.pocjetpack.Constants.Companion.TAG
 
@@ -16,9 +17,10 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        data= MyRandomGenerator()
-        val myrandam=data.getNumber()
-        tvNumber.text=myrandam
+
+        val model:MyRandomGenerator=ViewModelProviders.of(this).get(MyRandomGenerator::class.java)
+
+        tvNumber.text=model.getNumber()
         Log.i(TAG,"random number set")
 
 
